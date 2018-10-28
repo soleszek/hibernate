@@ -4,6 +4,8 @@ package pl.sdacademy.database.entity;
 import org.hibernate.annotations.Table;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Member {
@@ -13,9 +15,12 @@ public class Member {
     private String name;
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "run_id")
-    private Run run;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "run_member",
+            joinColumns = {@JoinColumn(name = "run_id")},
+            inverseJoinColumns = {@JoinColumn(name ="member_id")})
+
+    private Set<Run> runs = new HashSet<Run>();
 
     public Member(){};
 
@@ -48,11 +53,19 @@ public class Member {
         this.lastName = lastName;
     }
 
-    public Run getRan() {
+    public Set<Run> getRuns() {
+        return runs;
+    }
+
+    public void setRuns(Set<Run> runs) {
+        this.runs = runs;
+    }
+
+    /*public Run getRan() {
         return run;
     }
 
     public void setRan(Run ran) {
         this.run = ran;
-    }
+    }*/
 }

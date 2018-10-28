@@ -15,10 +15,12 @@ public class Run {
     private Date startDate;
     private Date startTime;
 
-    @OneToMany(
+    /*@OneToMany(
             fetch = FetchType.EAGER,
             mappedBy = "run",
-            cascade = CascadeType.REMOVE)
+            cascade = CascadeType.REMOVE)*/
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "runs")
+
     private Set<Member> members = new HashSet<Member>();
 
     public Run(){};

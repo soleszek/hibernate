@@ -1137,77 +1137,112 @@
     <table id="287" parent="5" name="hibernate_sequence"/>
     <table id="288" parent="5" name="member"/>
     <table id="289" parent="5" name="run"/>
-    <column id="290" parent="287" name="next_val">
+    <table id="290" parent="5" name="run_member"/>
+    <column id="291" parent="287" name="next_val">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="288" name="id">
+    <column id="292" parent="288" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="288" name="lastName">
+    <column id="293" parent="288" name="lastName">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="288" name="name">
+    <column id="294" parent="288" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="288" name="run_id">
+    <column id="295" parent="288" name="run_id">
       <Position>4</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="295" parent="288" name="FK6lmberltepdw411rxoaq9a7ni">
+    <index id="296" parent="288" name="FK6lmberltepdw411rxoaq9a7ni">
       <ColNames>run_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="296" parent="288" name="PRIMARY">
+    <key id="297" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="297" parent="288" name="FK6lmberltepdw411rxoaq9a7ni">
+    <foreign-key id="298" parent="288" name="FK6lmberltepdw411rxoaq9a7ni">
       <ColNames>run_id</ColNames>
       <RefSchemaName>hibernate</RefSchemaName>
       <RefTableName>run</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="298" parent="289" name="id">
+    <column id="299" parent="289" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="289" name="name">
+    <column id="300" parent="289" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="289" name="place">
+    <column id="301" parent="289" name="place">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="289" name="startDate">
+    <column id="302" parent="289" name="startDate">
       <Position>4</Position>
       <DataType>datetime(6)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="289" name="startTime">
+    <column id="303" parent="289" name="startTime">
       <Position>5</Position>
       <DataType>datetime(6)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="303" parent="289" name="PRIMARY">
+    <key id="304" parent="289" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
+    <column id="305" parent="290" name="run_id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="306" parent="290" name="member_id">
+      <Position>2</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="307" parent="290" name="FKd16xkllem6rfa8rrwnosjrmsv">
+      <ColNames>member_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="308" parent="290" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>run_id
+member_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="309" parent="290" name="FK9fnbbq81ufw85gsq3yv56v4rx">
+      <ColNames>run_id</ColNames>
+      <RefSchemaName>hibernate</RefSchemaName>
+      <RefTableName>member</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="310" parent="290" name="FKd16xkllem6rfa8rrwnosjrmsv">
+      <ColNames>member_id</ColNames>
+      <RefSchemaName>hibernate</RefSchemaName>
+      <RefTableName>run</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

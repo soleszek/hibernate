@@ -44,16 +44,33 @@ public class Main {
             run.setPlace("Rzeszów");
             runDao.savOrUpdate(run);
 
-            for(int j=0; j<5; j++) {
+            /*for(int j=0; j<5; j++) {
                 Member member = new Member();
                 member.setName("Piotr " + j);
                 member.setLastName("Pierwszy" + j);
-                member.setRan(run);
+                //member.setRan(run);
                 memberDao.saveOrUpdate(member);
-            }
+            }*/
+        }
+
+        for(int i = 0; i< 2; i++) {
+            Member member = new Member();
+            member.setName("Sylwester nr " + i);
+            member.setLastName("Pierwszy " + i);
+            memberDao.saveOrUpdate(member);
         }
 
         List<Run> runList = runDao.findAll();
+        List<Member> memberList = memberDao.findAll();
+
+        for(Member member: memberList) {
+            for(int i = 0; i<3; i++) {
+                int randomId = (int)(Math.random()*runList.size());
+                member.getRuns().add(runList.get(randomId));
+            }
+            memberDao.saveOrUpdate(member);
+        }
+
 
         HibernateUtils.getInstance().getSessionFactory().close();
 
