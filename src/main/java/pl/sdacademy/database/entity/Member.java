@@ -12,22 +12,21 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String name;
-    private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "run_member",
             joinColumns = {@JoinColumn(name = "run_id")},
             inverseJoinColumns = {@JoinColumn(name ="member_id")})
-
     private Set<Run> runs = new HashSet<Run>();
 
-    public Member(){};
 
-    public Member(String name, String lastName) {
-        this.name = name;
-        this.lastName = lastName;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+
+
+    public Member(){};
 
     public Long getId() {
         return id;
@@ -37,28 +36,20 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public Set<Run> getRuns() {
         return runs;
     }
 
     public void setRuns(Set<Run> runs) {
         this.runs = runs;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     /*public Run getRan() {

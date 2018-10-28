@@ -55,8 +55,8 @@ public class Main {
 
         for(int i = 0; i< 2; i++) {
             Member member = new Member();
-            member.setName("Sylwester nr " + i);
-            member.setLastName("Pierwszy " + i);
+            //member.setName("Sylwester nr " + i);
+            //member.setLastName("Pierwszy " + i);
             memberDao.saveOrUpdate(member);
         }
 

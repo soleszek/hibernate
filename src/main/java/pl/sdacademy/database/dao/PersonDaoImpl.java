@@ -2,62 +2,58 @@ package pl.sdacademy.database.dao;
 
 import org.hibernate.Session;
 import pl.sdacademy.database.entity.Member;
-import pl.sdacademy.database.entity.Run;
+import pl.sdacademy.database.entity.Person;
 import pl.sdacademy.database.utils.HibernateUtils;
 
 import javax.persistence.NoResultException;
 import java.util.List;
 
-public class MemberDaoImpl implements MemberDao {
-
-    public void saveOrUpdate(Member member) {
+public class PersonDaoImpl implements PersonDao {
+    public void saveOrUpdate(Person person) {
         Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.saveOrUpdate(member);
+        session.saveOrUpdate(person);
         session.getTransaction().commit();
         session.close();
     }
 
-    public Member findBy(Long id) {
+    public Person findBy(Long id) {
         try {
             Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
-            Member member = (Member) session.createQuery("from Run where id=:id").setParameter("id", id).getSingleResult();
+            Person person = (Person) session.createQuery("from Person where id=:id").setParameter("id", id).getSingleResult();
             session.getTransaction().commit();
             session.clear();
 
-            return member;
+            return person;
         } catch (NoResultException e) {
             return null;
         }
     }
 
-    @Override
-    public List<Member> findAll() {
+    public List<Person> findAll() {
         Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        List<Member> memberList = session.createQuery("from Member").list();
+        List<Person> personList = session.createQuery("from Person").list();
         session.getTransaction().commit();
         session.close();
 
-        return memberList;
+        return personList;
     }
 
-    @Override
     public void delete(Long id) {
         Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
         session.beginTransaction();
         session
-                .createQuery("delete Member where id=:id").setParameter("id", id)
+                .createQuery("delete Person where id=:id").setParameter("id", id)
                 .executeUpdate();
         session.getTransaction().commit();
         session.close();
     }
 
-    @Override
-    public void delete(Member member) {
+    public void delete(Person person) {
         Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.delete(member);
+        session.delete(person);
         session.getTransaction().commit();
         session.close();
     }
