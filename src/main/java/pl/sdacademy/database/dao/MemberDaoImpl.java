@@ -11,7 +11,8 @@ import java.util.List;
 public class MemberDaoImpl implements MemberDao {
 
     public void saveOrUpdate(Member member) {
-        Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
+        Session session = HibernateUtils.getInstance()
+                .getSessionFactory().getCurrentSession();
         session.beginTransaction();
         session.saveOrUpdate(member);
         session.getTransaction().commit();
@@ -20,8 +21,11 @@ public class MemberDaoImpl implements MemberDao {
 
     public Member findBy(Long id) {
         try {
-            Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
-            Member member = (Member) session.createQuery("from Run where id=:id").setParameter("id", id).getSingleResult();
+            Session session = HibernateUtils.getInstance().getSessionFactory()
+                    .getCurrentSession();
+            Member member = (Member) session
+                    .createQuery("from Run where id=:id")
+                    .setParameter("id", id).getSingleResult();
             session.getTransaction().commit();
             session.clear();
 
@@ -31,7 +35,6 @@ public class MemberDaoImpl implements MemberDao {
         }
     }
 
-    @Override
     public List<Member> findAll() {
         Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -42,7 +45,6 @@ public class MemberDaoImpl implements MemberDao {
         return memberList;
     }
 
-    @Override
     public void delete(Long id) {
         Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -53,7 +55,6 @@ public class MemberDaoImpl implements MemberDao {
         session.close();
     }
 
-    @Override
     public void delete(Member member) {
         Session session = HibernateUtils.getInstance().getSessionFactory().getCurrentSession();
         session.beginTransaction();
